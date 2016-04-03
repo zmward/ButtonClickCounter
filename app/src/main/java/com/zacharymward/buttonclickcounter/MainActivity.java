@@ -5,11 +5,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button myButton;
+    private TextView myText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        myButton = (Button) findViewById(R.id.button);
+        myText = (TextView) findViewById(R.id.textView);
+
+        View.OnClickListener myOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myText.setText("The button got tapped");
+            }
+        };
+
+        myButton.setOnClickListener(myOnClickListener);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast toastMessage = Toast.makeText(this, "The settings option was tapped", Toast.LENGTH_LONG);
+            toastMessage.show();
             return true;
         }
 
